@@ -3,7 +3,7 @@ import './App.css';
 import Router from "./Router";
 import {store} from "./store";
 import {fetchProducts} from "./store/actions/productSlice";
-store.dispatch(fetchProducts());
+store.dispatch(fetchProducts({page:30}));
 
 function App() {
   return (

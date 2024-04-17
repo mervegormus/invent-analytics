@@ -1,18 +1,22 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {RootState} from '../index';
-import {initialState,  ProductResponse, ProductResponseError} from "./interfaces";
+import {initialState, ProductRequest, ProductResponse, ProductResponseError} from "./interfaces";
 
 
-const apiKey='bd90ba30'
-export const fetchProducts = createAsyncThunk<ProductResponse[], undefined, { rejectValue: ProductResponseError, state: RootState }>(
+const apiKey = 'bd90ba30'
+export const fetchProducts = createAsyncThunk<ProductResponse[], ProductRequest, {
+    rejectValue: ProductResponseError,
+    state: RootState
+}>(
     'products/fetchProducts',
-    async (_,thunkAPI) => {
+    async (query, thunkAPI) => {
+        const {page} = query
         try {
-            const response = await axios.get(`http://www.omdbapi.com/?apikey=${apiKey}&t=pokemon`);
+            const response = await axios.get(`http://www.omdbapi.com/?apikey=${apiKey}&s=Pokemon&page=${page}`);
             return response.data as ProductResponse[];
         } catch (error) {
-            return thunkAPI.rejectWithValue({ error: 'Something went wrong' });
+            return thunkAPI.rejectWithValue({error: 'Something went wrong'});
         }
     }
 );
