@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import productSlice from "../actions/productSlice";
+import movieSlice from "../actions/movieSlice";
 
 const rootReducer:any = combineReducers({
-    products: productSlice,
+    movies: movieSlice,
 });
 
 export default rootReducer;

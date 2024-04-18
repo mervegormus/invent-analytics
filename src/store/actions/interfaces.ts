@@ -1,40 +1,37 @@
-// export interface ProductResponse {
-//      Title : string,
-//      Year : string,
-//      Rated : string,
-//      Released : string
-//      Runtime : string
-//      Genre : string
-//      Director :string
-//      Writer : string
-//      Actors : string
-//      Plot : string
-//      Language : string
-//      Country : string
-//      Awards : string,
-//      Poster : string,
-//      Ratings : [
-//         {
-//              Source : string,
-//              Value : string
-//         }
-//     ],
-//      Metascore : string
-//      imdbRating : string
-//      imdbVotes : string
-//      imdbID : string
-//      Type : string
-//      DVD : string
-//      BoxOffice : string
-//      Production : string
-//      Website : string
-//      Response : string
-// }
-export interface ProductRequest {
+export interface MoviesDetailResponse {
+     Title : string,
+     Year : string,
+     Rated : string,
+     Released : string
+     Runtime : string
+     Genre : string
+     Director :string
+     Writer : string
+     Actors : string
+     Plot : string
+     Language : string
+     Country : string
+     Awards : string,
+     Poster : string,
+     Ratings : [],
+     Metascore : string
+     imdbRating : string
+     imdbVotes : string
+     imdbID : string
+     Type : string
+     DVD : string
+     BoxOffice : string
+     Moviesion : string
+     Website : string
+     Response : string
+}
+export interface MoviesRequest {
     page?: number
+    y?:string
+    type?:string
 }
 
-export interface ProductResponse {
+export interface MoviesResponse {
     Search:
         {
             Title: string,
@@ -45,19 +42,25 @@ export interface ProductResponse {
         }[]
     totalResults:string
 }
+export interface MoviesRequest{
+    page?:number
+}
 
-
-export interface ProductResponseError {
+export interface MoviesResponseError {
+    error: string
+}
+export interface MoviesDetailResponseError {
     error: string
 }
 
-export interface ProductState {
-    products: ProductResponse[];
+export interface MoviesState {
+    movies: MoviesResponse[];
     error?: string
     loading: boolean
+    moviesDetail?:MoviesDetailResponse
 }
 
-export const initialState: ProductState = {
+export const initialState: MoviesState = {
     loading: false,
-    products: []
+    movies: [],
 };
